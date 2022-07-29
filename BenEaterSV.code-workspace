@@ -101,6 +101,7 @@
 		"rewrap.reformat": true,
 		"explorer.sortOrder": "type",
 		"search.quickOpen.history.filterSortOrder": "recency",
-		"verilog.logging.enabled": true
+		"verilog.logging.enabled": true,
+		"makefile.extensionOutputFolder": "./.vscode"
 	}
 }
