@@ -1,6 +1,6 @@
-BenEaterSV - A SystemVerilog CPU inspired by Ben Eater's SAP-1 design
+MIT License
 
-Copyright 2022 Xark
+Copyright (c) 2022 Xark
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
