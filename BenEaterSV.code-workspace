@@ -1,0 +1,106 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"[markdown]": {
+			"editor.wordWrap": "wordWrapColumn",
+			"editor.wordWrapColumn": 131,
+			"files.trimTrailingWhitespace": false
+		},
+		"editor.acceptSuggestionOnCommitCharacter": false,
+		"editor.quickSuggestions": {
+			"comments": "off",
+			"strings": "off",
+			"other": "off"
+		},
+		"editor.formatOnSave": true,
+		"editor.dragAndDrop": false,
+		"editor.codeActionsOnSave": {
+			"source.fixAll.markdownlint": true
+		},
+		"markdownlint.config": {
+			"MD001": false, // Heading levels should only increment by one level at a time
+			"MD033": false // no inline HTML
+		},
+		"cSpell.words": [
+			"clk",
+			"tcyc"
+		],
+		"cSpell.allowCompoundWords": true,
+		"cSpell.diagnosticLevel": "Hint",
+		"terminal.integrated.fontSize": 11,
+		"workbench.editor.enablePreview": false,
+		"verilog.linting.verilator.arguments": "-sv --language 1800-2012 --trace-fst -v /home/kenj/Dev/oss-cad-suite/share/yosys/ice40/cells_sim.v -Irtl -Wall -Wno-DECLFILENAME -Wno-STMTDLY  -DNO_ICE40_DEFAULT_ASSIGNMENTS",
+		"verilog.linting.linter": "verilator",
+		"todo-tree.highlights.defaultHighlight": {
+			"icon": "alert",
+			"type": "text",
+			"foreground": "#F00",
+			"opacity": 50,
+			"iconColour": "#FF0"
+		},
+		"todo-tree.general.tags": [
+			"BUG",
+			"HACK",
+			"FIXME",
+			"NOTE",
+			"TODO"
+		],
+		"todo-tree.highlights.customHighlight": {
+			"HACK": {
+				"icon": "$(gear)",
+				"foreground": "#8000FF",
+				"iconColour": "problemsInfoIcon.foreground",
+				"type": "tag",
+				"gutterIcon": true
+			},
+			"BUG": {
+				"icon": "$(bug)",
+				"foreground": "#FF4000",
+				"iconColour": "problemsErrorIcon.foreground",
+				"type": "tag",
+				"gutterIcon": true
+			},
+			"FIXME": {
+				"icon": "$(flame)",
+				"foreground": "#FF0000",
+				"iconColour": "problemsErrorIcon.foreground",
+				"type": "tag",
+				"gutterIcon": true
+			},
+			"NOTE": {
+				"icon": "$(note)",
+				"foreground": "#00FF00",
+				"iconColour": "editorHint.foreground",
+				"type": "tag",
+				"gutterIcon": true
+			},
+			"TODO": {
+				"icon": "$(check)",
+				"foreground": "#FFFF00",
+				"iconColour": "problemsWarningIcon.foreground",
+				"type": "tag",
+				"gutterIcon": true
+			}
+		},
+		"files.associations": {
+			"*.sv": "systemverilog"
+		},
+		"workbench.colorCustomizations": {
+			"terminal.foreground": "#18E818",
+			"terminalCursor.foreground": "#E0E0E0",
+		},
+		"editor.wordWrapColumn": 200,
+		"files.trimTrailingWhitespace": true,
+		"rewrap.autoWrap.enabled": true,
+		"rewrap.wrappingColumn": 120,
+		"markdown.extension.italic.indicator": "*",
+		"rewrap.reformat": true,
+		"explorer.sortOrder": "type",
+		"search.quickOpen.history.filterSortOrder": "recency",
+		"verilog.logging.enabled": true
+	}
+}
