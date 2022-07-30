@@ -1,0 +1,8 @@
+**/*.bin
+**/*.json
+**/*.vlt
+isim/cpu_isim
+vsim/obj_dir/*
+logs/*
+upduino/logs/*
+icebreaker/logs/*
