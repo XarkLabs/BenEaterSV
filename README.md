@@ -1,6 +1,6 @@
 # Ben Eater inspired SAP-1 computer designed in SystemVerilog
 
-[Project Home](https://github.com/XarkLabs) [#TODO]
+[BenEaterSV project](https://github.com/XarkLabs/BenEaterSV)
 
 ###### MIT licensed (See top-level LICENSE file for license information.)
 
@@ -14,11 +14,14 @@ a lot of people understand how Ben's computer works from his excellent videos, i
 * zero flag is set whenever A register is set equal to zero (not only on zero output from ALU)
 * JC and JZ implemtation differs from Ben's, since on an FPGA it was easier to add a bit more logic and control lines vs quadrupling the "microcode ROM" size (which is typically implemented with LUTs anyways, so this is more efficient - and less typing).
 
-It has been developed using the Icarus Verilog and Verilator simulators (so you don't actually need a physical FPGA to try this design).  It also supports UPduino V3.x and iCEBreaker FPGA boards [#TODO], both using the Lattice iCE40UltraPlus5K FPGA and fully open tools from [oss-cad-suite](https://github.com/YosysHQ/oss-cad-suite-build/releases/latest).
+It has been developed using the Icarus Verilog and Verilator simulators (so you don't actually need a physical FPGA to try out this design).  It also supports these OSHW boards: [UPduino V3.x](https://github.com/tinyvision-ai-inc/UPduino-v3.0) and [iCEBreaker FPGA](https://github.com/icebreaker-fpga/icebreaker).  Both using the Lattice iCE40UltraPlus5K FPGA and fully open tools from [oss-cad-suite](https://github.com/YosysHQ/oss-cad-suite-build/releases/latest) (so you can build this on Linux, macOS or Windows).
 
-This is a simple educational 8-bit CPU with a 4-bit address bus (so only 16 memory locations for program and data).  Hence the original name "SAP-1" for "Simple As Possible" (and pretty close to that for a "typical" CPU).  It is controlled by "microcode" that asserts the proper control signals, in the proper sequence to make the CPU function (and define the instruction set).
+This is a simple educational 8-bit CPU with 8-bit ALU but only a 4-bit address bus (so only 16 memory locations for program and data).  Hence the original name "SAP-1" for "Simple As Possible" (and pretty close to that for a "typical" CPU).  It is controlled by "microcode" that asserts the proper control signals, in the proper sequence to make the CPU function (and define the instruction set).
 
-Each instruction takes several cycles to execute (aka T-states).  The first two cycles are the same regardless of the opcode and are always used to put the program counter on the memory bus (PC -> MAR), and then to read the next program opcode from memory (IR <- MEM[MAR]).  Cycles after that are used to perform the specific opcode function (so the "fastest" an opcode can be is 3 cycles).
+Here is an example of the output from Icarus Verilog simulator from `make isim`:
+![Icarus Verilog Simulation](./pics/iverilog_sim_output.png)
+
+Each instruction takes several cycles to execute (aka T-states or T-cycles).  The first two cycles are the same regardless of the opcode and are always used to put the program counter on the memory bus (PC -> MAR), and then to read the next program opcode from memory (IR <- MEM[MAR]) and increment the PC.  Cycles after that are used to perform the work of a specific opcode (so the "fastest" opcode can finished executing in three cycles).
 
 Here are the instructions currently implemented:
 
@@ -39,6 +42,14 @@ Here are the instructions currently implemented:
     1110 xxxx   OUT             output A register               3 cycles
     1111 xxxx   HLT             halt CPU clock                  3 cycles
 
-The CPU has 8-bits of binary on GPIO pins 1-8 for the "OUT" opcode and also has one button to halt the clock and one for reset [#TODO].
+For the UPduino FPGA board, the example project has the 8-bits of binary data from OUT opcode put out on 8 GPIO pins (gpio_2 to gpio_44 inclusive).
+![UPDuino FPGA board](./pics/UPduino_FPGA.jpg)
+
+For the iCEBreaker FPGA board it supports a two digit hex 7-segment output on PMOD1A along with 8-bit binary output on PMOD 1B.
+![iCEBreadker FPGA board](./pics/iCEBreaker_FPGA.jpg)
+
+Both boards show a red LED when the program has halted (via HLT) and will flash an LED on each T-cycle (with a slow clock).
+
+The included program is a pointless counting test, but you can enter another program into the 16 memory locations in the `cpu_mem.sv` file.  Several example programs can be found here: [Programs and more Commands for the Ben Eater 8-Bit Breadboard Computer](https://theshamblog.com/programs-and-more-commands-for-the-ben-eater-8-bit-breadboard-computer/) (note that some fancy ones require some new opcodes to be implemented to replace the "unused" opcodes - a nice exercise).
 
 -Xark (<https://hackaday.io/Xark>)
